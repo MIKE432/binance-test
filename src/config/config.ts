@@ -18,6 +18,8 @@ export class EnvConfig {
         `Incorrect environment values: ${errors.map((error) => error.property).join()}`,
       );
     }
+
+    return config;
   }
 
   private static load(): EnvConfig {

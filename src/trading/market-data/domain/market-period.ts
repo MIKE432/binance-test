@@ -4,6 +4,11 @@ export class MarketPeriodProps {
   lowPrice: number;
 }
 
+interface ClineData {
+  highPrice: number;
+  lowPrice: number;
+}
+
 export class MarketPeriod {
   private readonly symbol: string;
   private readonly highPrice: number;
@@ -13,6 +18,27 @@ export class MarketPeriod {
     this.symbol = props.symbol;
     this.highPrice = props.highPrice;
     this.lowPrice = props.lowPrice;
+  }
+
+  static createFromCline(symbol: string, data: ClineData[]) {
+    let lowPrice: number = Number.MAX_SAFE_INTEGER;
+    let highPrice: number = -1;
+
+    data.forEach((row) => {
+      if (row.highPrice > highPrice) {
+        highPrice = row.highPrice;
+      }
+
+      if (row.lowPrice < lowPrice) {
+        lowPrice = row.lowPrice;
+      }
+    });
+
+    return new MarketPeriod({
+      symbol,
+      lowPrice,
+      highPrice,
+    });
   }
 
   getProps() {
