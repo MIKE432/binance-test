@@ -11,12 +11,24 @@ export class MarketPeriodDto {
   @ApiProperty()
   lowPrice: number;
 
+  @ApiProperty()
+  startPrice: number;
+
+  @ApiProperty()
+  endPrice: number;
+
+  @ApiProperty()
+  percentageDiff: number;
+
   static create(period: MarketPeriod): MarketPeriodDto {
     const props = period.getProps();
     return {
       symbol: props.symbol,
       highPrice: props.highPrice,
       lowPrice: props.lowPrice,
+      percentageDiff: period.getPercentageDiff(),
+      startPrice: props.startPrice,
+      endPrice: props.endPrice,
     };
   }
 }

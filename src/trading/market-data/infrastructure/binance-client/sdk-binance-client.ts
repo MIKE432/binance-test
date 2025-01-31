@@ -29,9 +29,11 @@ export class SdkBinanceClient implements BinanceClient {
       },
     );
 
-    return result.map(([_, __, highPrice, lowPrice]) => ({
+    return result.map(([_, openPrice, highPrice, lowPrice, closePrice]) => ({
       highPrice: Number.parseFloat(highPrice as string),
       lowPrice: Number.parseFloat(lowPrice as string),
+      openPrice: Number.parseFloat(openPrice as string),
+      closePrice: Number.parseFloat(closePrice as string),
     }));
   }
 }

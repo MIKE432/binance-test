@@ -7,6 +7,8 @@ export interface GetKlineDataProps {
 export interface KlineData {
   lowPrice: number;
   highPrice: number;
+  openPrice: number;
+  closePrice: number;
 }
 
 export abstract class BinanceClient {

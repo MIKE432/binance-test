@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { Response } from 'supertest';
-import { TestApp, TestAppFactory } from './sut';
+import { TestApp, TestAppFactory } from '../sut';
 
 describe('Health (e2e)', () => {
   let app: TestApp;
