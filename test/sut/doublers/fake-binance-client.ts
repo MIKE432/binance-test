@@ -4,7 +4,13 @@ import {
 } from '../../../src/trading/market-data/infrastructure';
 
 export class FakeBinanceClient extends BinanceClient {
+  private isThrowingError: boolean;
+
   getKlineData(): Promise<KlineData[]> {
+    if (this.isThrowingError) {
+      throw new Error('Some binance error');
+    }
+
     return Promise.resolve([
       {
         lowPrice: 0,
@@ -19,5 +25,9 @@ export class FakeBinanceClient extends BinanceClient {
         closePrice: 1,
       },
     ]);
+  }
+
+  shouldThrowError(isThrowingError: boolean) {
+    this.isThrowingError = isThrowingError;
   }
 }

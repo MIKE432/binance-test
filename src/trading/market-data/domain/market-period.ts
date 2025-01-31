@@ -52,6 +52,9 @@ export class MarketPeriod {
   }
 
   getPercentageDiff() {
+    if (this.startPrice === 0) {
+      return 0;
+    }
     return ((this.endPrice - this.startPrice) / this.startPrice) * 100;
   }
 
